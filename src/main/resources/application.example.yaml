@@ -1,0 +1,94 @@
+
+# ==========================================
+# APPLICATION CONFIGURATION
+# ==========================================
+spring:
+  application:
+    name: documind-ai
+
+  # ========================================
+  # DATABASE CONFIGURATION
+  # ========================================
+  datasource:
+    url: jdbc:postgresql://localhost:5432/documind
+    username: <username>
+    password: <password>
+    driver-class-name: org.postgresql.Driver
+
+  # JPA configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          timezone: UTC
+        format_sql: trues
+
+  # ========================================
+  # FILE UPLOAD CONFIGURATION
+  # ========================================
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  # ========================================
+  # GOOGLE GEMINI - CHAT MODEL
+  # ========================================
+  ai:
+    google:
+      genai:
+        api-key: <api-key>
+
+        chat:
+          model: gemini-2.5-flash
+          temperature: 0.2
+
+        # ==================================
+        # GOOGLE GEMINI - EMBEDDING MODEL
+        # ==================================
+        embedding:
+          api-key: <api-key>
+          text:
+            model: gemini-embedding-001
+            task-type: RETRIEVAL_DOCUMENT
+            dimensions: 768
+
+    # ======================================
+    # PGVECTOR CONFIGURATION
+    # ======================================
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 768
+        table-name: vector_store
+
+# ==========================================
+# ACTUATOR CONFIGURATION
+# ==========================================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+# ==========================================
+# Document Storage CONFIGURATION
+# ==========================================
+documind:
+  storage:
+    location: ./uploads
+
+# ==========================================
+# SERVER CONFIGURATION
+# ==========================================
+server:
+  port: 8000
