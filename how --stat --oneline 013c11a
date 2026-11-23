@@ -1,0 +1,35 @@
+[33m231d381[m implemented basic document apis[upload,retrive,getList,delete] endpoints and tested them
+ .gitattributes                                     |   2 [32m+[m
+ .gitignore                                         |  33 [32m+++[m
+ .mvn/wrapper/maven-wrapper.properties              |   3 [32m+[m
+ docker-compose.yml                                 |  21 [32m++[m
+ mvnw                                               | 295 [32m+++++++++++++++++++++[m
+ mvnw.cmd                                           | 189 [32m+++++++++++++[m
+ pom.xml                                            | 134 [32m++++++++++[m
+ .../java/com/documind/DocumindAiApplication.java   |  13 [32m+[m
+ .../application/port/in/DocumentUseCase.java       |  18 [32m++[m
+ .../application/port/in/UploadDocumentUseCase.java |  13 [32m+[m
+ .../port/out/DocumentPersistencePort.java          |  19 [32m++[m
+ .../application/port/out/DocumentStoragePort.java  |  13 [32m+[m
+ .../application/service/DocumentFileValidator.java | 117 [32m++++++++[m
+ .../application/service/DocumentService.java       |  46 [32m++++[m
+ .../application/service/UploadDocumentService.java |  79 [32m++++++[m
+ .../com/documind/domain/enums/DocumentStatus.java  |   8 [32m+[m
+ .../exception/DocumentNotFoundException.java       |   8 [32m+[m
+ .../java/com/documind/domain/model/Document.java   |  68 [32m+++++[m
+ .../adapter/DocumentPersistenceAdapter.java        |  77 [32m++++++[m
+ .../persistence/entity/DocumentEntity.java         | 109 [32m++++++++[m
+ .../repository/DocumentJpaRepository.java          |  13 [32m+[m
+ .../storage/LocalDocumentStorageAdapter.java       |  91 [32m+++++++[m
+ .../controller/DocumentController.java             | 104 [32m++++++++[m
+ .../dto/request/DocumentUploadRequest.java         |  13 [32m+[m
+ .../dto/response/ApiErrorResponse.java             |  11 [32m+[m
+ .../dto/response/DocumentResponse.java             |  19 [32m++[m
+ .../exception/GlobalExceptionHandler.java          |  51 [32m++++[m
+ src/main/resources/application-dev.yml             |   0
+ src/main/resources/application.yaml                |  94 [32m+++++++[m
+ .../com/documind/DocumindAiApplicationTests.java   |  13 [32m+[m
+ ...8f7-554503d81e49_aurora_cloud_pricing_guide.pdf |  93 [32m+++++++[m
+ ...dd7-a60c-f821d6177797_nimbus_deploy_runbook.pdf |  99 [32m+++++++[m
+ ...b02-5f990c478783_aurora_cloud_pricing_guide.pdf |  93 [32m+++++++[m
+ 33 files changed, 1959 insertions(+)

@@ -15,7 +15,7 @@ spring:
     password: <password>
     driver-class-name: org.postgresql.Driver
 
-  # JPA configuration
+  # JPA CONFIGURATION
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,7 +24,8 @@ spring:
       hibernate:
         jdbc:
           timezone: UTC
-        format_sql: trues
+        format_sql: true
+    open-in-view: false
 
   # ========================================
   # FILE UPLOAD CONFIGURATION
@@ -41,17 +42,16 @@ spring:
   ai:
     google:
       genai:
-        api-key: <api-key>
-
+        api-key: ${GOOGLE_API_KEY}
         chat:
-          model: gemini-2.5-flash
+          model: gemini-3.8-flash
           temperature: 0.2
 
         # ==================================
         # GOOGLE GEMINI - EMBEDDING MODEL
         # ==================================
         embedding:
-          api-key: <api-key>
+          api-key: ${GOOGLE_API_KEY}
           text:
             model: gemini-embedding-001
             task-type: RETRIEVAL_DOCUMENT
@@ -81,14 +81,25 @@ management:
       show-details: never
 
 # ==========================================
-# Document Storage CONFIGURATION
+# DOCUMENT STORAGE CONFIGURATION
 # ==========================================
 documind:
   storage:
     location: ./uploads
+  chunking:
+    size: 1000
+    overlap: 200
 
 # ==========================================
 # SERVER CONFIGURATION
 # ==========================================
 server:
   port: 8000
+
+# ==========================================
+# LOGGING CONFIGURATION
+# ==========================================
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    com.google.genai: DEBUG
