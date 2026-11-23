@@ -9,5 +9,8 @@ public interface DocumentStoragePort {
             byte[] content
     );
 
+    byte[] read(String filePath);
+
     void delete(String filePath);
 }
+

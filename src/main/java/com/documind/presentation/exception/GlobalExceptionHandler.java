@@ -27,15 +27,19 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGenericException(
-            Exception exception) {
+    public ResponseEntity<ApiErrorResponse> handleGenericException(Exception exception) {
 
-        return buildResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                "An unexpected error occurred"
+        exception.printStackTrace();
+
+        ApiErrorResponse response = new ApiErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "An unexpected error occurred",
+                LocalDateTime.now()
         );
-    }
 
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(response);
+    }
     private ResponseEntity<ApiErrorResponse> buildResponse(
             HttpStatus status,
             String message) {

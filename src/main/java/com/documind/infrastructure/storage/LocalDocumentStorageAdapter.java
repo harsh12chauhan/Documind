@@ -88,4 +88,28 @@ public class LocalDocumentStorageAdapter implements DocumentStoragePort {
             );
         }
     }
+
+    @Override
+    public byte[] read(String filePath) {
+
+        Path targetPath = storageLocation.resolve(filePath).normalize();
+
+        if (!targetPath.startsWith(storageLocation)) {
+            throw new IllegalArgumentException("Invalid file path");
+        }
+
+        if (!Files.isRegularFile(targetPath)) {
+            throw new IllegalArgumentException("Stored document not found: " + filePath);
+        }
+
+        try {
+            return Files.readAllBytes(targetPath);
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Unable to read stored document: " + filePath,
+                    exception
+            );
+        }
+    }
+
 }
