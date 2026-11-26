@@ -9,6 +9,9 @@ import com.documind.domain.exception.DocumentNotFoundException;
 import com.documind.domain.model.Document;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.UUID;
 
