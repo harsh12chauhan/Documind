@@ -11,8 +11,8 @@ spring:
   # ========================================
   datasource:
     url: jdbc:postgresql://localhost:5432/documind
-    username: <username>
-    password: <password>
+    username: ${DB_USERNAME:documind}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   # ========================================
